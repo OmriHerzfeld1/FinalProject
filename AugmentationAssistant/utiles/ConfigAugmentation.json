@@ -1,0 +1,135 @@
+{
+	        "Rotate": 
+                {
+				"name": "Rotate",
+				"parameters": [
+					{
+                    "defaults": [-1, 1],
+                    "limits_list": [-360, 360],
+                    "param_name": "limit",
+					"present_name": "Rotate angle",
+                    "type": "double_slider"
+					}
+                    ,
+				    {
+                    "options": 
+					{
+						"Nearest": 0,
+                        "Linear": 1,
+                        "Cubic": 2,
+                        "Lanczos4": 4
+					},
+                     "param_name": "interpolation",
+				     "present_name": "Rotate Type of interpolation",
+                     "type": "combo"
+				     }
+				]
+			}
+			,
+			"Affine": 
+                {
+				"name": "Affine",
+				"parameters": [
+					{
+                    "defaults": [1, 20],
+                    "limits_list": [0, 70],
+                    "param_name": "translate_px",
+					"present_name": "Affine translate in pixels",
+                    "type": "double_slider"
+					}
+					,
+					{
+                    "defaults": [0, 0],
+                    "limits_list": [-15, 15],
+                    "param_name": "shear",
+					"present_name": "Affine shear",
+                    "type": "double_slider"
+					}
+                    ,
+				    {
+                    "options": 
+					{
+						"Nearest": 0,
+                        "Linear": 1,
+                        "Cubic": 2,
+                        "Lanczos4": 4
+					},
+                     "param_name": "interpolation",
+				     "present_name": "Affine Type of interpolation",
+                     "type": "combo"
+				     }
+					 ,
+					 {
+                    "options": 
+					{
+						"black border": 0,
+                        "using frame for missing pixels": 1,
+                        "mirror missing pixels": 2
+					},
+                     "param_name": "mode",
+				     "present_name": "Affine Pixel extrapolation method",
+                     "type": "combo"
+				     }
+				]
+			}
+			,
+			"HorizontalFlip": 
+                {
+				"name": "Horizontal Flip",
+				"parameters": [
+					{
+                    "param_name": "No Parameters",
+					"present_name": "No Parameters",
+                    "type": "no_parameters"
+					}
+				]
+			}
+			,
+			"VerticalFlip": 
+                {
+				"name": "Vertical Flip",
+				"parameters": [
+					{
+                    "param_name": "No Parameters",
+					"present_name": "No Parameters",
+                    "type": "no_parameters"
+					}
+				]
+			}
+			,
+			"RandomGamma": 
+                {
+				"name": "Gamma Correction",
+				"parameters": [
+					{
+                    "defaults": [90, 110],
+                    "limits_list": [0, 200],
+                    "param_name": "gamma_limit",
+					"present_name": "Gamma threshold",
+                    "type": "double_slider"
+					}
+				]
+			}
+			,
+            "GaussNoise": 
+                {
+				"name": "Gauss Noise",
+				"parameters": [
+					{
+                    "defaults": [45.0, 50.0],
+                    "limits_list": [0.0, 500.0],
+                    "param_name": "var_limit",
+					"present_name": "Gauss Variation limits",
+                    "type": "double_slider"
+					}
+                    ,
+				    {
+                    "defaults": 0.0,
+                     "limits_list": [-100.0, 100.0],
+                     "param_name": "mean",
+				     "present_name": "Gauss mean",
+                     "type": "slider"
+				     }
+				]
+			}
+}

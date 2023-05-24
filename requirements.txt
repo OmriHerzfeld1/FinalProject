@@ -1,0 +1,12 @@
+numpy~=1.23.3
+opencv-python~=4.6.0.66
+termcolor~=2.0.1
+PySimpleGUI~=4.60.3
+tqdm~=4.64.1
+torch~=1.12.1
+Pygments~=2.13.0
+scikit-learn~=1.1.2
+matplotlib~=3.5.3
+Pillow~=9.2.0
+scikit-image~=0.19.3
+albumentations~=1.2.1
