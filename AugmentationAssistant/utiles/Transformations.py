@@ -25,21 +25,6 @@ def visualize(image_og, image_tr):
     plt.show()
 
 
-# def transformation_pipe():
-#     # The pipeline of the transformation
-#     transform_pipe = A.ReplayCompose([
-#         A.MultiplicativeNoise(multiplier=(0, 1), always_apply=True)
-#     ])
-#     # Reading image
-#     image = cv2.imread(
-#         r'C:\Users\omri.herzfeld\OneDrive - Bright Machines\Pictures\Sample\Back\Valid fail\Image000204.jpg')
-#     image = cv2.imread(r'C:\Users\omri.herzfeld\OneDrive - Bright Machines\Pictures\Sample\FalseNegative017.bmp')
-#     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-#     # checking
-#     print(transform_pipe(image=image)['replay'])
-#
-
-
 class Transformation:
 
     def __init__(self, name: str, trans: dict):
@@ -186,6 +171,7 @@ class Transform:
                    iterations: int, coco, i: int):
         """
         will create and save augmented images
+        :param coco: COCO Object
         :param i: number of coco file
         :param image: image object to transform
         :param transform: needed for random or single order pipeline
@@ -246,7 +232,6 @@ class Transform:
                     keypoint_params=A.KeypointParams(
                         format('xy'))
                 )
-            # TODO - maybe do nicer, there is no reason for the 'bbox_classes' var.
             begin_time = time.time()
             bbox = [anno.bbox for anno in image.anno]  # create one list that contains all bbox lists
             bbox_classes = [''] * len(bbox)  # Name had no meaning
@@ -264,7 +249,6 @@ class Transform:
             transformed_im = cv2.cvtColor(transformed["image"], cv2.COLOR_RGB2BGR)
             # write image to the disk
             cv2.imwrite(new_file_path, transformed_im)
-            # TODO - need to check if image size was changed
             end_time = time.time()
             delta_t = end_time - begin_time
             self.total_t += delta_t
@@ -285,10 +269,6 @@ class Transform:
                 relevant_keypoints = transformed["keypoints"][seg_index: seg_index + len(anno.segmentation[0]) // 2]
                 seg_index += len(anno.segmentation[0]) // 2
                 segmentation = [key_to_seg(relevant_keypoints)]  # convert keypoints format to segmentation
-                # print(colored("old bbox is {}".format(anno.bbox), color="blue"))
-                # print(colored("new bbox is {}".format(bbox), color="green"))
-                # print(colored('old segmentation is - {}'.format(anno.segmentation), color="blue"))
-                # print(colored('new segmentation is - {}'.format(segmentation), color="green"))
                 cur_im.add_anno(segmentation=segmentation,
                                 area=anno.area,
                                 bbox=bbox,
@@ -461,5 +441,3 @@ class Transformations:
         cropped = indata[0][crop_y:crop_y + size[1], crop_x:crop_x + size[0]]  # x is y and y is x in this mathematics
         return cropped
 
-# im = io.imread(r'C:\Users\omri.herzfeld\OneDrive - Bright Machines\Pictures\Sample\Back\Place\Image000132.jpg')
-# new = Transformations.elastic_distortion(im)

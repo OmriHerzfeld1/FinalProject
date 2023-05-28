@@ -183,7 +183,7 @@ class AutoAnnotator:
 
         # Find homography using RANSAC to cut outliers
         ransac_reproj_threshold = 1
-        self.cur_h, mask = cv.estimateAffine2D(points1, points2, ransacReprojThreshold=ransac_reproj_threshold)
+        self.cur_h, mask = cv.estimateAffine2D(points1, points2, cv.RANSAC, ransacReprojThreshold=ransac_reproj_threshold)
         a00, a01, a10, a11 = self.cur_h[0][0], self.cur_h[0][1], self.cur_h[1][0], self.cur_h[1][1]  # shear
         b0, b1 = self.cur_h[0][2], self.cur_h[1][2]  # shift
         # check if matrix make sense

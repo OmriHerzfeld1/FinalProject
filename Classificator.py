@@ -134,7 +134,7 @@ def GUI():
     ]
 
     # GUI object
-    window = sg.Window("Bright Machines Classificator tool",
+    window = sg.Window("Bright Machines Classification tool",
                        layout=layout,
                        icon='bm_logo.ico',
                        finalize=True,

@@ -19,7 +19,6 @@ class Augment:
         self.folder_path = folder_path
         self.new_path = new_path
         self.transform = Transform()
-        # TODO - delete multi
         self.multi_transform = multi_transform  # Bool that holds if to make random transforms on transforms
         self.trans_amount = trans_amount  # Will hold the number of images to augment for every image if 'multi_transform' == Ture
         # else number of images to augment for every transformation for every image
@@ -231,7 +230,7 @@ class AugmentationGui(Augment):
         :return:
         """
         for i, coco in enumerate(self.coco):
-            # if there is nor second coco then let's end run
+            # if there is no second coco then let's end run
             if i == 1 and not self.second_coco:
                 break
             self.transform.load_selected_parameters(values)
@@ -260,7 +259,7 @@ class AugmentationGui(Augment):
                                              coco=coco,
                                              i=i + 1):
                     break
-            coco.export_coco('Augmented')
+            coco.export_coco('Augmented + Original')
             # need to restart counting
             self.transform.augmented_images = 0
             self.transform.augmented_anno = 1
@@ -273,11 +272,10 @@ class AugmentationGui(Augment):
         print(colored('moving to settings window', color='blue'))
         sg.theme('MyCreatedTheme')  # this is implementing the custom them that was build earlier
         settings_width: int = 1100  # width of settings in settings window
-        # TODO: Check if cam do nicer
         # Dir to one image' need for display of patch
         # im_dis_patch = [os.path.join(self.folder_path, f) for f in os.listdir(self.folder_path) if
         #                  os.path.isfile(os.path.join(self.folder_path, f))][0]
-        # For patch settings # TODO - make size relative to screen size
+        # For patch settings #
         canvas_size = (585, 390)  # The size of the canvas object as well as im shower
 
         right_col, height = self.transform.transform_settings_list(settings_width)

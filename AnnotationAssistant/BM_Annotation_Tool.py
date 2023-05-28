@@ -86,7 +86,6 @@ class Image:
             line = graph.DrawLine((x, y), (x1, y1), width=width, color=color)
             x, y = x1, y1
             lines.append(line)
-            # print(line)
         return lines
 
     def load_im(self, graph, canvas_size, color: str = 'black'):
@@ -336,7 +335,7 @@ class Image:
             print('{} moved to points {}'.format(self.cur_anno.shape, self.cur_anno.bbox))
         else:
             x, y = values["-GRAPH-"]
-            if self.cur_anno.shape == 'Polygon':  # TODO need to do nicer
+            if self.cur_anno.shape == 'Polygon':
                 if not dragging:  # The mouse was pressed just now
                     start_p = [x, y]  # Beginning point
                     dragging = True  # Next points are not beginning anymore
@@ -350,8 +349,8 @@ class Image:
                         graph.move_figure(line, self.cur_anno.delta_x, self.cur_anno.delta_y)
                     start_p = [x, y]
                     for point in self.cur_anno.bbox:
-                        point[0] = point[0] + self.cur_anno.delta_x
-                        point[1] = point[1] + self.cur_anno.delta_y
+                        point[0] += self.cur_anno.delta_x
+                        point[1] += self.cur_anno.delta_y
             else:
                 if not dragging:  # The mouse was pressed just now
                     start_p = [x, y]  # Beginning point
@@ -656,12 +655,10 @@ def import_coco(file_dir: str, resize: tuple):
 def gui():
     mon_y, mon_x = PIL.ImageGrab.grab().size
     print("Monitor size is {}".format((mon_x, mon_y)))
-    # TODO - canvas size in relation with screen size
     canvas_size = (int(mon_x * 0.9), int(mon_y * 0.3))  # The size of the canvas object as well as im shower (x, y)
     anno_min_size = (200, 15)  # (min size for area of rectangle annotation, same for circle but min radius)
     supers, parts, status = [], [], ['Pass', 'Fail']  # Lists of classification
     category: dict = {'Supercategory': supers, 'Name': parts, 'Status': status}  # connect chosen category to correct list
-    # TODO: name_index
     # name_index: int = 0  # Hold's the index for Annotation name presentation
     attributes = [[sg.Text('Choose', background_color='#181c21'),  # UI for attributes
                    # readonly - can't type in

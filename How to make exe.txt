@@ -1,0 +1,2 @@
+make an exe using
+https://pypi.org/project/pysimplegui-exemaker/
