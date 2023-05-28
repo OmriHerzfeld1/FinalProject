@@ -1,2 +1,10 @@
-make an exe using
+make an exe with out conncetion to images and so on using
 https://pypi.org/project/pysimplegui-exemaker/
+
+
+maybe better way to make exe
+https://python.plainenglish.io/convert-a-python-project-to-an-executable-exe-file-175080da4485
+
+
+to create a requirments file and then create a conda eve
+https://stackoverflow.com/questions/50777849/from-conda-create-requirements-txt-for-pip3
